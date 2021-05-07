@@ -68,10 +68,10 @@ pa2 = PessoaAtividade(p2.nome, a2.nome, 9)
 # A quantidade de gerações
 # Definir o tamanho da populacao maxima, ex: populacao inical = 20, cada geracao tem que ter 20 cromossomos, se deu 40, tem q matar os 20 piores
 
-# 1 . Pop inical
+# 1 . Pop inical -> criar json com os dados e buscar eles - Ravi
 # - While geracoes_requisitadas >= geracoes_atuais:
-# 2 . aplicar a ff
-# 3 . Selecionar quem vai fazer o cruzamento (os pais):  roleta viciada
-# 4 . Gerar máscara e aplicar o cruzamento
-# 5 . Matar população
+# 2 . aplicar a ff -> Laercio
+# 3 . Selecionar quem vai fazer o cruzamento (os pais):  roleta viciada -> Badaró
+# 4 . Gerar máscara e aplicar o cruzamento -> Badaró e Ravi
+# 5 . Matar população - Ravi
 # - EndWhile
