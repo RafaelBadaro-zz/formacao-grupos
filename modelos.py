@@ -1,32 +1,64 @@
 class Pessoa:
-    def __init__(self, nome):
+    def __init__(self, id, nome):
         self.nome = nome
-
+        self.id = id
+        self.pessoasHabilidades = []
+        self.pessoasAtividades = []
 
 class Atividade:
-    def __init__(self, nome, habilidades_necessarias):
+    def __init__(self, id, nome):
+        self.id = id
         self.nome = nome
-        self.habilidades_necessarias = habilidades_necessarias
-
+        self.pessoasAtividades = []
+        self.atividadesHabilidades = []
 
 class Habilidade:
-    def __init__(self, nome):
+    def __init__(self, id, nome):
+        self.id = id
         self.nome = nome
+        self.pessoasHabilidades = []
+        self.atividadesHabilidades = []
 
+class AtividadeHabilidade:
+    def __init__(self, atividadeId, habilidadeId):
+        self.atividadeId = atividadeId
+        self.habilidadeId = habilidadeId
+    
+    def setAtividade(self, atividade):
+        self.atividade = atividade
+
+    def setHabilidade(self, habilidade):
+        self.habilidade = habilidade
 
 class PessoaAtividade:
-    def __init__(self, nome_pessoa, nome_atividade, preferencia):
-        self.nome_pessoa = nome_pessoa
-        self.nome_atividade = nome_atividade
+    def __init__(self, pessoaId, atividadeId, preferencia):
+        self.pessoaId = pessoaId
+        self.atividadeId = atividadeId
         self.preferencia = preferencia
 
+    def setPessoa(self, pessoa):
+        self.pessoa = pessoa
+
+    def setAtividade(self, atividade):
+        self.atividade = atividade
 
 class PessoaHabilidade:
-    def __init__(self, nome_pessoa, nome_habilidade, nota):
-        self.nome_pessoa = nome_pessoa
-        self.nome_habilidade = nome_habilidade
+    def __init__(self, pessoaId, habilidadeId, nota):
+        self.pessoaId = pessoaId
+        self.habilidadeId = habilidadeId
         self.nota = nota
+    
+    def setPessoa(self, pessoa):
+        self.pessoa = pessoa
 
+    def setHabilidade(self, habilidade: Habilidade):
+        self.habilidade = habilidade
+
+class Dados:
+    def __init__(self, pessoas, habilidades, atividades):
+        self.pessoas = pessoas
+        self.habilidades = habilidades
+        self.atividades = atividades
 
 class Cromossomo:
     def __init__(self, pessoas, atividade, nota_ff):
@@ -39,8 +71,8 @@ class Cromossomo:
         soma_preferencias = 0
         for i in range(len(self.pessoas)):
             # Somatórios
-            soma_habilidades++
-            soma_preferencias++
+            soma_habilidades
+            soma_preferencias
 
 #
 
