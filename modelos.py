@@ -29,9 +29,10 @@ class PessoaHabilidade:
 
 
 class Cromossomo:
-    def __init__(self, pessoas, atividade):
+    def __init__(self, pessoas, atividade, nota_ff):
         self.pessoas = pessoas
         self.atividade = atividade
+        self.nota_ff = nota_ff
 
     def funcao_fitness(self):
         soma_habilidades = 0
@@ -40,6 +41,8 @@ class Cromossomo:
             # Somatórios
             soma_habilidades++
             soma_preferencias++
+
+#
 
 
 class Selecao:
