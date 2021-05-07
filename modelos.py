@@ -46,20 +46,6 @@ class Selecao:
     def __init__(self, cromossomos):
         self.cromossomos = cromossomos
 
-
-p1 = Pessoa('Joaozinho')
-p2 = Pessoa('Rogerio')
-
-a1 = Atividade('A1')
-a2 = Atividade('A2')
-
-h1 = Habilidade('H1')
-h2 = Habilidade('H2')
-
-pa1 = PessoaAtividade(p1.nome, a1.nome, 6)
-pa2 = PessoaAtividade(p2.nome, a2.nome, 9)
-
-
 # Tarefas
 
 # Parametros de entrada:
