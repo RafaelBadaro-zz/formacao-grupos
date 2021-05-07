@@ -1,64 +1,77 @@
-
-# Cromossomo
-class Equipe:
-
-    # Classe equipe
-    # geracao - um número que indica qual a geracao da equipe
-    # pessoas - um vetor que indica as pessoas que compoe essa equipe
-
-    def __init__(self, geracao, pessoas):
-        self.geracao = geracao
-        self.pessoas = pessoas
-
-
 class Pessoa:
-    def __init__(self, habilidades, preferencias):
-        self.habilidades = habilidades
-        self.preferencias = preferencias
-
-
-class Habilidade:
-
-    # Classe habilidade
-    # nota - um numbero que indica a pontuacao da pessoa na habilidade
-    def __init__(self, nome, nota):
+    def __init__(self, nome):
         self.nome = nome
-        self.nota = nota
-
-
-class Preferencia:
-
-    def __init__(self, nome_atividade, nota):
-        self.nome_atividade = nome_atividade
-        self.nota = nota
 
 
 class Atividade:
-
-    # As habilidades requisitadas por atividade
-    habilidades_requisitadas = {
-        'A1': ['H1', 'H2', 'H3'],
-        'A2': ['H1', 'H3', 'H4'],
-    }
+    def __init__(self, nome, habilidades_necessarias):
+        self.nome = nome
+        self.habilidades_necessarias = habilidades_necessarias
 
 
-h1 = Habilidade('H1', 2)
-h2 = Habilidade('H2', 4)
-h3 = Habilidade('H3', 8)
-h4 = Habilidade('H4', 1)
-
-hds = [h1, h2, h3, h4]
-
-p1 = Preferencia('A1', 4)
-p2 = Preferencia('A2', 7)
-
-prefs = [p1, p2]
-
-pessoa = Pessoa(hds, prefs)
-
-for x in range(len(pessoa.habilidades)):
-    print("Nome:" + str(pessoa.habilidades[x].nome))
-    print("Nota:" + str(pessoa.habilidades[x].nota))
+class Habilidade:
+    def __init__(self, nome):
+        self.nome = nome
 
 
-input()
+class PessoaAtividade:
+    def __init__(self, nome_pessoa, nome_atividade, preferencia):
+        self.nome_pessoa = nome_pessoa
+        self.nome_atividade = nome_atividade
+        self.preferencia = preferencia
+
+
+class PessoaHabilidade:
+    def __init__(self, nome_pessoa, nome_habilidade, nota):
+        self.nome_pessoa = nome_pessoa
+        self.nome_habilidade = nome_habilidade
+        self.nota = nota
+
+
+class Cromossomo:
+    def __init__(self, pessoas, atividade):
+        self.pessoas = pessoas
+        self.atividade = atividade
+
+    def funcao_fitness(self):
+        soma_habilidades = 0
+        soma_preferencias = 0
+        for i in range(len(self.pessoas)):
+            # Somatórios
+            soma_habilidades++
+            soma_preferencias++
+
+
+class Selecao:
+    def __init__(self, cromossomos):
+        self.cromossomos = cromossomos
+
+
+p1 = Pessoa('Joaozinho')
+p2 = Pessoa('Rogerio')
+
+a1 = Atividade('A1')
+a2 = Atividade('A2')
+
+h1 = Habilidade('H1')
+h2 = Habilidade('H2')
+
+pa1 = PessoaAtividade(p1.nome, a1.nome, 6)
+pa2 = PessoaAtividade(p2.nome, a2.nome, 9)
+
+
+# Tarefas
+
+# Parametros de entrada:
+
+# O tamanho de cada cromossomo
+# A quantidade de gerações
+# Definir o tamanho da populacao maxima, ex: populacao inical = 20, cada geracao tem que ter 20 cromossomos, se deu 40, tem q matar os 20 piores
+
+# 1 . Pop inical
+# - While geracoes_requisitadas >= geracoes_atuais:
+# 2 . aplicar a ff
+# 3 . Selecionar quem vai fazer o cruzamento (os pais):  roleta viciada
+# 4 . Gerar máscara e aplicar o cruzamento
+# 5 . Matar população
+# - EndWhile
