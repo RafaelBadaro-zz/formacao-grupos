@@ -1,8 +1,9 @@
 import json
 from modelos import *
+from random import randint
 
-def thanos():
-    return 0
+def thanos(cromossomos, tamMaxPopulacao):
+    return sorted(cromossomos, key= lambda c: c.nota_ff, reverse=True)[0:tamMaxPopulacao]
 
 def pegarDados():
     with open('dados.json') as json_file:
@@ -52,5 +53,26 @@ def pegarDados():
 
     return Dados(pessoas, habilidades, atividades)
 
-def iniciarPopulacao(dados: Dados):
-    return list()
+# metodo privado
+# seleciona pessoas aleatorias para formar uma equipe
+def _selecionarPessoasAleatorias(pessoas, tamEquipe):
+    copyPessoas = pessoas[0:len(pessoas)]
+    equipe = list()
+
+    for i in range(tamEquipe):
+        n = randint(0,len(copyPessoas))
+        equipe.append(copyPessoas[n])
+        copyPessoas.pop(n)
+
+    return equipe
+
+# inicia populacao de cromossomos
+def iniciarPopulacao(pessoas, atividade, tamPopulacao, tamEquipe):
+    cromossomos = list()
+
+    for i in range(tamPopulacao):
+        equipe = _selecionarPessoasAleatorias(pessoas, tamEquipe)
+        cromossomo = Cromossomo(equipe, atividade)
+        cromossomos.append(cromossomo)
+
+    return cromossomos

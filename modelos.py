@@ -61,10 +61,10 @@ class Dados:
         self.atividades = atividades
 
 class Cromossomo:
-    def __init__(self, pessoas, atividade, nota_ff):
+    def __init__(self, pessoas, atividade):
         self.pessoas = pessoas
         self.atividade = atividade
-        self.nota_ff = nota_ff
+        self.nota_ff = self.funcao_fitness()
 
     def funcao_fitness(self):
         soma_habilidades = 0
