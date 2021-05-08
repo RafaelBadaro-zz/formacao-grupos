@@ -5,12 +5,14 @@ class Pessoa:
         self.pessoasHabilidades = []
         self.pessoasAtividades = []
 
+
 class Atividade:
     def __init__(self, id, nome):
         self.id = id
         self.nome = nome
         self.pessoasAtividades = []
         self.atividadesHabilidades = []
+
 
 class Habilidade:
     def __init__(self, id, nome):
@@ -19,16 +21,18 @@ class Habilidade:
         self.pessoasHabilidades = []
         self.atividadesHabilidades = []
 
+
 class AtividadeHabilidade:
     def __init__(self, atividadeId, habilidadeId):
         self.atividadeId = atividadeId
         self.habilidadeId = habilidadeId
-    
+
     def setAtividade(self, atividade):
         self.atividade = atividade
 
     def setHabilidade(self, habilidade):
         self.habilidade = habilidade
+
 
 class PessoaAtividade:
     def __init__(self, pessoaId, atividadeId, preferencia):
@@ -42,23 +46,26 @@ class PessoaAtividade:
     def setAtividade(self, atividade):
         self.atividade = atividade
 
+
 class PessoaHabilidade:
     def __init__(self, pessoaId, habilidadeId, nota):
         self.pessoaId = pessoaId
         self.habilidadeId = habilidadeId
         self.nota = nota
-    
+
     def setPessoa(self, pessoa):
         self.pessoa = pessoa
 
     def setHabilidade(self, habilidade: Habilidade):
         self.habilidade = habilidade
 
+
 class Dados:
     def __init__(self, pessoas, habilidades, atividades):
         self.pessoas = pessoas
         self.habilidades = habilidades
         self.atividades = atividades
+
 
 class Cromossomo:
     def __init__(self, pessoas, atividade):
@@ -73,8 +80,6 @@ class Cromossomo:
             # Somatórios
             soma_habilidades
             soma_preferencias
-
-#
 
 
 class Selecao:
