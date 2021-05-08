@@ -2,6 +2,8 @@
 from modelos import *
 import numpy as np
 
+from mutacao import *
+
 
 def preparar_roleta(cromossomos):
     soma_notas_ff = 0
@@ -70,37 +72,21 @@ def sortear_pai(dicionario):
     return pai_sorteado
 
 
-def rodar_roleta(dicionario, numero_populacao):
+def gerar_nova_geracao(dicionario, tamPopulacao, atividade, tamCromossomo):
     numero_nova_geracao = 0
     nova_geracao = []
-    while(numero_populacao >= numero_nova_geracao):
+    while(tamPopulacao >= numero_nova_geracao):
         dicionario_copia = dicionario.copy()
         pai1 = sortear_pai(dicionario_copia)
         dicionario_copia.pop(pai1)
         dicionario_recalculado = recalcular_porcentagem(dicionario_copia)
         pai2 = sortear_pai(dicionario_recalculado)
-
-        print('Os pais:', pai1.nota_ff, ' e ',
-              pai2.nota_ff, ' vao ser cruzados')
-
-        # filho_nova_geracao = cruzar_pais(pai1, pai2)
-        # nova_geracao.append(filho_nova_geracao)
+        filho_nova_geracao = cruzar(pai1, pai2, atividade, tam_cromossomo)
+        nova_geracao.append(filho_nova_geracao)
         numero_nova_geracao += 1
 
     return nova_geracao
 
 
-crom1 = Cromossomo(['P1'], ['A1'])
-crom2 = Cromossomo(['P2'], ['A2'])
-crom3 = Cromossomo(['P1'], ['A1'])
-crom4 = Cromossomo(['P2'], ['A2'])
-crom5 = Cromossomo(['P2'], ['A2'])
-
-l = [crom1, crom2, crom3, crom4, crom5]
-
-dic = preparar_roleta(l)
-print('Dicionario original')
-for x in dic:
-    print('Nota: ', x.nota_ff, '->', 'Porcentagem:', dic[x])
-
-rodar_roleta(dic, 10)
+def rodar_roleta(cromossomos, tamPopulacao, atividade, tamCromossomo):
+    gerar_nova_geracao(preparar_roleta(cromossomos, tamPopulacao, atividade, tamCromossomo)
