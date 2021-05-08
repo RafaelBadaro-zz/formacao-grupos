@@ -2,8 +2,10 @@ import json
 from modelos import *
 from random import randint
 
+
 def thanos(cromossomos, tamMaxPopulacao):
-    return sorted(cromossomos, key= lambda c: c.nota_ff, reverse=True)[0:tamMaxPopulacao]
+    return sorted(cromossomos, key=lambda c: c.nota_ff, reverse=True)[0:tamMaxPopulacao]
+
 
 def pegarDados():
     with open('dados.json') as json_file:
@@ -11,11 +13,16 @@ def pegarDados():
 
     # mapeando dados json em objetos
     pessoas = list(map(lambda p: Pessoa(p['id'], p['nome']), data['pessoas']))
-    habilidades = list(map(lambda h: Habilidade(h['id'], h['nome']), data['habilidades']))
-    atividades = list(map(lambda a: Atividade(a['id'], a['nome']), data['atividades']))
-    pessoasHabilidades = list(map(lambda ph: PessoaHabilidade(ph['pessoaId'], ph['habilidadeId'], ph['nota']), data['pessoasHabilidades']))
-    pessoasAtividades = list(map(lambda pa: PessoaAtividade(pa['pessoaId'], pa['atividadeId'], pa['preferencia']), data['pessoasAtividades']))
-    atividadesHabilidades = list(map(lambda ah: AtividadeHabilidade(ah['atividadeId'], ah['habilidadeId']), data['atividadesHabilidades']))
+    habilidades = list(map(lambda h: Habilidade(
+        h['id'], h['nome']), data['habilidades']))
+    atividades = list(map(lambda a: Atividade(
+        a['id'], a['nome']), data['atividades']))
+    pessoasHabilidades = list(map(lambda ph: PessoaHabilidade(
+        ph['pessoaId'], ph['habilidadeId'], ph['nota']), data['pessoasHabilidades']))
+    pessoasAtividades = list(map(lambda pa: PessoaAtividade(
+        pa['pessoaId'], pa['atividadeId'], pa['preferencia']), data['pessoasAtividades']))
+    atividadesHabilidades = list(map(lambda ah: AtividadeHabilidade(
+        ah['atividadeId'], ah['habilidadeId']), data['atividadesHabilidades']))
 
     # adicionando as referencias
     for pessoaHabilidade in pessoasHabilidades:
@@ -23,7 +30,7 @@ def pegarDados():
             if pessoaHabilidade.pessoaId == pessoa.id:
                 pessoaHabilidade.setPessoa(pessoa=pessoa)
                 pessoa.pessoasHabilidades.append(pessoaHabilidade)
-        
+
         for habilidade in habilidades:
             if pessoaHabilidade.habilidadeId == habilidade.id:
                 pessoaHabilidade.setHabilidade(habilidade=habilidade)
@@ -55,18 +62,22 @@ def pegarDados():
 
 # metodo privado
 # seleciona pessoas aleatorias para formar uma equipe
+
+
 def _selecionarPessoasAleatorias(pessoas, tamEquipe):
     copyPessoas = pessoas[0:len(pessoas)]
     equipe = list()
 
     for i in range(tamEquipe):
-        n = randint(0,len(copyPessoas))
+        n = randint(0, len(copyPessoas)-1)
         equipe.append(copyPessoas[n])
         copyPessoas.pop(n)
 
     return equipe
 
 # inicia populacao de cromossomos
+
+
 def iniciarPopulacao(pessoas, atividade, tamPopulacao, tamEquipe):
     cromossomos = list()
 

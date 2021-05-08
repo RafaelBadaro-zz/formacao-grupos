@@ -1,3 +1,5 @@
 import populacao
 
-print(populacao.iniciarPopulacao(populacao.pegarDados()))
+dados = populacao.pegarDados()
+
+print(populacao.iniciarPopulacao(dados.pessoas, dados.atividades[0], 10, 5))

@@ -102,11 +102,11 @@ def rodar_roleta(dicionario, numero_populacao):
     return nova_geracao
 
 
-crom1 = Cromossomo(['P1'], ['A1'], 100)
-crom2 = Cromossomo(['P2'], ['A2'], 20)
-crom3 = Cromossomo(['P1'], ['A1'], 890)
-crom4 = Cromossomo(['P2'], ['A2'], 420)
-crom5 = Cromossomo(['P2'], ['A2'], 500)
+crom1 = Cromossomo(['P1'], ['A1'])
+crom2 = Cromossomo(['P2'], ['A2'])
+crom3 = Cromossomo(['P1'], ['A1'])
+crom4 = Cromossomo(['P2'], ['A2'])
+crom5 = Cromossomo(['P2'], ['A2'])
 
 l = [crom1, crom2, crom3, crom4, crom5]
 
