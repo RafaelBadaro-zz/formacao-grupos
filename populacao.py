@@ -48,15 +48,18 @@ def pegarDados():
                 atividade.pessoasAtividades.append(pessoaAtividade)
 
     for atividadeHabilidade in atividadesHabilidades:
+        atividadeEscolhida = None
         for atividade in atividades:
             if atividadeHabilidade.atividadeId == atividade.id:
                 atividadeHabilidade.setAtividade(atividade)
                 atividade.atividadesHabilidades.append(atividadeHabilidade)
+                atividadeEscolhida = atividade
 
         for habilidade in habilidades:
             if atividadeHabilidade.habilidadeId == habilidade.id:
                 atividadeHabilidade.setHabilidade(habilidade)
                 habilidade.atividadesHabilidades.append(habilidade)
+                atividadeEscolhida.habilidades.append(habilidade)
 
     return Dados(pessoas, habilidades, atividades)
 
