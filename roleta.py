@@ -60,12 +60,61 @@ def sortear_pai(dicionario):
                 porcentagens[i] = round(porcentagens[i] - 0.01, 2)
                 ocorreu_reajuste = True
 
+    elif round(sum(porcentagens), 2) == 1.02:
+        menor_porcentagem = min(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == menor_porcentagem:
+                porcentagens[i] = round(porcentagens[i] - 0.02, 2)
+                ocorreu_reajuste = True
+
+    elif round(sum(porcentagens), 2) == 1.03:
+        menor_porcentagem = min(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == menor_porcentagem:
+                porcentagens[i] = round(porcentagens[i] - 0.03, 2)
+                ocorreu_reajuste = True
+
+    elif round(sum(porcentagens), 2) == 1.04:
+        menor_porcentagem = min(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == menor_porcentagem:
+                porcentagens[i] = round(porcentagens[i] - 0.04, 2)
+                ocorreu_reajuste = True
+
     elif round(sum(porcentagens), 2) == 0.99:
         # No caso de abaixo, adicionar 0,01 no que tem a maior porcentagem
         maior_porcentagem = max(porcentagens)
         for i in range(len(porcentagens)):
             if not ocorreu_reajuste and porcentagens[i] == maior_porcentagem:
                 porcentagens[i] = round(porcentagens[i] + 0.01, 2)
+                ocorreu_reajuste = True
+
+    elif round(sum(porcentagens), 2) == 0.98:
+        maior_porcentagem = max(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == maior_porcentagem:
+                porcentagens[i] = round(porcentagens[i] + 0.02, 2)
+                ocorreu_reajuste = True
+
+    elif round(sum(porcentagens), 2) == 0.97:
+        maior_porcentagem = max(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == maior_porcentagem:
+                porcentagens[i] = round(porcentagens[i] + 0.03, 2)
+                ocorreu_reajuste = True
+
+    elif round(sum(porcentagens), 2) == 0.96:
+        maior_porcentagem = max(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == maior_porcentagem:
+                porcentagens[i] = round(porcentagens[i] + 0.04, 2)
+                ocorreu_reajuste = True
+
+    elif round(sum(porcentagens), 2) == 0.95:
+        maior_porcentagem = max(porcentagens)
+        for i in range(len(porcentagens)):
+            if not ocorreu_reajuste and porcentagens[i] == maior_porcentagem:
+                porcentagens[i] = round(porcentagens[i] + 0.05, 2)
                 ocorreu_reajuste = True
 
     pai_sorteado = np.random.choice(cromossomos, p=porcentagens)
@@ -81,7 +130,7 @@ def gerar_nova_geracao(dicionario, tamPopulacao, atividade, tamCromossomo):
         dicionario_copia.pop(pai1)
         dicionario_recalculado = recalcular_porcentagem(dicionario_copia)
         pai2 = sortear_pai(dicionario_recalculado)
-        filho_nova_geracao = cruzar(pai1, pai2, atividade, tam_cromossomo)
+        filho_nova_geracao = cruzar(pai1, pai2, atividade, tamCromossomo)
         nova_geracao.append(filho_nova_geracao)
         numero_nova_geracao += 1
 
@@ -89,4 +138,4 @@ def gerar_nova_geracao(dicionario, tamPopulacao, atividade, tamCromossomo):
 
 
 def rodar_roleta(cromossomos, tamPopulacao, atividade, tamCromossomo):
-    gerar_nova_geracao(preparar_roleta(cromossomos, tamPopulacao, atividade, tamCromossomo)
+    return gerar_nova_geracao(preparar_roleta(cromossomos), tamPopulacao, atividade, tamCromossomo)

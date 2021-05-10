@@ -2,12 +2,14 @@
 RELEVANCIA_HABILIDADE = 1
 RELEVANCIA_PREFERENCIA = 1
 
+
 class Pessoa:
     def __init__(self, id, nome):
         self.nome = nome
         self.id = id
         self.pessoasHabilidades = []
         self.pessoasAtividades = []
+
 
 class Atividade:
     def __init__(self, id, nome):
@@ -17,12 +19,14 @@ class Atividade:
         self.atividadesHabilidades = []
         self.habilidades = []
 
+
 class Habilidade:
     def __init__(self, id, nome):
         self.id = id
         self.nome = nome
         self.pessoasHabilidades = []
         self.atividadesHabilidades = []
+
 
 class AtividadeHabilidade:
     def __init__(self, atividadeId, habilidadeId):
@@ -35,6 +39,7 @@ class AtividadeHabilidade:
     def setHabilidade(self, habilidade):
         self.habilidade = habilidade
 
+
 class PessoaAtividade:
     def __init__(self, pessoaId, atividadeId, preferencia):
         self.pessoaId = pessoaId
@@ -46,6 +51,7 @@ class PessoaAtividade:
 
     def setAtividade(self, atividade):
         self.atividade = atividade
+
 
 class PessoaHabilidade:
     def __init__(self, pessoaId, habilidadeId, nota):
@@ -60,11 +66,13 @@ class PessoaHabilidade:
     def setHabilidade(self, habilidade: Habilidade):
         self.habilidade = habilidade
 
+
 class Dados:
     def __init__(self, pessoas, habilidades, atividades):
         self.pessoas = pessoas
         self.habilidades = habilidades
         self.atividades = atividades
+
 
 class Cromossomo:
     def __init__(self, pessoas, atividade):
@@ -75,35 +83,21 @@ class Cromossomo:
     def funcao_fitness(self):
         soma_habilidades = 0
         soma_preferencias = 0
-        
+
         habilidadesAtividade = self.atividade.atividadesHabilidades
 
         for pessoa in self.pessoas:
             for habilidadePessoa in pessoa.pessoasHabilidades:
                 for habilidadeAtividade in habilidadesAtividade:
                     if habilidadePessoa.habilidadeId == habilidadeAtividade.habilidadeId:
-                        soma_habilidades += ((habilidadePessoa.nota * RELEVANCIA_HABILIDADE) + (habilidadePessoa.preferencia * RELEVANCIA_PREFERENCIA))
+                        soma_habilidades += ((habilidadePessoa.nota * RELEVANCIA_HABILIDADE) + (
+                            habilidadePessoa.preferencia * RELEVANCIA_PREFERENCIA))
         return soma_habilidades
-    
+
     def __str__(self):
         return str(self.nota_ff)
-        
+
+
 class Selecao:
     def __init__(self, cromossomos):
         self.cromossomos = cromossomos
-
-# Tarefas
-
-# Parametros de entrada:
-
-# O tamanho de cada cromossomo
-# A quantidade de gerações
-# Definir o tamanho da populacao maxima, ex: populacao inical = 20, cada geracao tem que ter 20 cromossomos, se deu 40, tem q matar os 20 piores
-
-# 1 . Pop inical -> criar json com os dados e buscar eles - Ravi - feito
-# - While geracoes_requisitadas >= geracoes_atuais:
-# 2 . aplicar a ff -> Laercio
-# 3 . Selecionar quem vai fazer o cruzamento (os pais):  roleta viciada -> Badaró - feito
-# 4 . Gerar máscara e aplicar o cruzamento -> Badaró e Ravi
-# 5 . Matar população - Ravi - feito
-# - EndWhile
