@@ -1,5 +1,5 @@
 
-RELEVANCIA_HABILIDADE = 10
+RELEVANCIA_HABILIDADE = 1
 RELEVANCIA_PREFERENCIA = 1
 
 
@@ -58,7 +58,6 @@ class PessoaHabilidade:
         self.pessoaId = pessoaId
         self.habilidadeId = habilidadeId
         self.nota = nota
-        self.preferencia = 1
 
     def setPessoa(self, pessoa):
         self.pessoa = pessoa
@@ -81,18 +80,9 @@ class Cromossomo:
         self.nota_ff = self.funcao_fitness()
 
     def funcao_fitness(self):
-        soma_habilidades = 0
-        soma_preferencias = 0
-
-        habilidadesAtividade = self.atividade.atividadesHabilidades
-
-        for pessoa in self.pessoas:
-            for habilidadePessoa in pessoa.pessoasHabilidades:
-                for habilidadeAtividade in habilidadesAtividade:
-                    if habilidadePessoa.habilidadeId == habilidadeAtividade.habilidadeId:
-                        soma_habilidades += ((habilidadePessoa.nota * RELEVANCIA_HABILIDADE) + (
-                            habilidadePessoa.preferencia * RELEVANCIA_PREFERENCIA))
-        return soma_habilidades
+        soma_habilidades = self.soma_habilidade()
+        soma_preferencias = self.soma_preferencia()
+        return soma_habilidades * RELEVANCIA_HABILIDADE + soma_preferencias * RELEVANCIA_PREFERENCIA
 
     def __str__(self):
         return str(self.nota_ff)
@@ -107,6 +97,22 @@ class Cromossomo:
 
         return True
 
+    def soma_habilidade(self):
+        soma_habilidade = 0
+        for pessoa in self.pessoas:
+            for habilidadePessoa in pessoa.pessoasHabilidades:
+                for habilidadeAtividade in self.atividade.atividadesHabilidades:
+                    if habilidadePessoa.habilidadeId == habilidadeAtividade.habilidadeId:
+                        soma_habilidade += habilidadePessoa.nota
+        return soma_habilidade
+    
+    def soma_preferencia(self):
+        soma_preferencia = 0
+        for pessoa in self.pessoas:
+            for pessoaAtividade in pessoa.pessoasAtividades:
+                if pessoaAtividade.atividadeId == self.atividade.id:
+                    soma_preferencia += pessoaAtividade.preferencia
+        return soma_preferencia
 
 class Selecao:
     def __init__(self, cromossomos):

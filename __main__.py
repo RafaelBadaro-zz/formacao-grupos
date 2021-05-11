@@ -50,7 +50,9 @@ def iniciar():
             print('Equipe:', str(i), '-> Nota:', novaGeracao[i])
 
     print('------------------------------------------------------')
-    print('Melhor equipe -> Nota:', novaGeracao[0].nota_ff)
+    print('Melhor equipe: -> Nota fitness', novaGeracao[0].nota_ff)
+    print('Soma habilidade:', novaGeracao[0].soma_habilidade())
+    print('Soma preferencia:', novaGeracao[0].soma_preferencia())
     print('Pessoas dentro da equipe:')
     for i in novaGeracao[0].pessoas:
         print('Pessoa:', i.id)
