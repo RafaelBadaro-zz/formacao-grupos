@@ -22,7 +22,7 @@ import modelos
 def iniciar():
     tamPopulacao = 5
     tamEquipe = 5
-    qntGeracoes = 10
+    qntGeracoes = 9
     qntGeracoesAtuais = 0
 
     dados = populacao.pegarDados()
@@ -42,13 +42,18 @@ def iniciar():
                 novaGeracao, tamPopulacao, atividade, tamEquipe)
 
         novaGeracao = populacao.thanos(novaGeracao, tamPopulacao)
+        qntGeracoesAtuais += 1
 
         print('-----------------')
         print('Geração:', qntGeracoesAtuais)
         for i in range(len(novaGeracao)):
             print('Equipe:', str(i), '-> Nota:', novaGeracao[i])
 
-        qntGeracoesAtuais += 1
+    print('------------------------------------------------------')
+    print('Melhor equipe -> Nota:', novaGeracao[0].nota_ff)
+    print('Pessoas dentro da equipe:')
+    for i in novaGeracao[0].pessoas:
+        print('Pessoa:', i.id)
 
 
 iniciar()
