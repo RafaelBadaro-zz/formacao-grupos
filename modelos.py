@@ -97,6 +97,16 @@ class Cromossomo:
     def __str__(self):
         return str(self.nota_ff)
 
+    def comparaCromossomos(self, c2):
+        if len(self.pessoas) != len(c2.pessoas):
+            return False
+
+        for i in self.pessoas:
+            if i not in c2.pessoas:
+                return False
+
+        return True
+
 
 class Selecao:
     def __init__(self, cromossomos):

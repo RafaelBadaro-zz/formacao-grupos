@@ -41,6 +41,8 @@ def iniciar():
             novaGeracao = roleta.rodar_roleta(
                 novaGeracao, tamPopulacao, atividade, tamEquipe)
 
+        novaGeracao = populacao.thanos(novaGeracao, tamPopulacao)
+
         print('-----------------')
         print('Geração:', qntGeracoesAtuais)
         for i in range(len(novaGeracao)):

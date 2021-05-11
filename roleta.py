@@ -121,9 +121,9 @@ def sortear_pai(dicionario):
     return pai_sorteado
 
 
-def gerar_nova_geracao(dicionario, tamPopulacao, atividade, tamCromossomo):
+def gerar_nova_geracao(dicionario, cromossomos, tamPopulacao, atividade, tamCromossomo):
     numero_nova_geracao = 0
-    nova_geracao = []
+    nova_geracao = cromossomos
     while(tamPopulacao >= numero_nova_geracao):
         dicionario_copia = dicionario.copy()
         pai1 = sortear_pai(dicionario_copia)
@@ -131,11 +131,18 @@ def gerar_nova_geracao(dicionario, tamPopulacao, atividade, tamCromossomo):
         dicionario_recalculado = recalcular_porcentagem(dicionario_copia)
         pai2 = sortear_pai(dicionario_recalculado)
         filho_nova_geracao = cruzar(pai1, pai2, atividade, tamCromossomo)
-        nova_geracao.append(filho_nova_geracao)
-        numero_nova_geracao += 1
+
+        existe = False
+        for i in nova_geracao:
+            if i.comparaCromossomos(filho_nova_geracao):
+                existe = True
+
+        if not existe:
+            nova_geracao.append(filho_nova_geracao)
+            numero_nova_geracao += 1
 
     return nova_geracao
 
 
 def rodar_roleta(cromossomos, tamPopulacao, atividade, tamCromossomo):
-    return gerar_nova_geracao(preparar_roleta(cromossomos), tamPopulacao, atividade, tamCromossomo)
+    return gerar_nova_geracao(preparar_roleta(cromossomos), cromossomos, tamPopulacao, atividade, tamCromossomo)
